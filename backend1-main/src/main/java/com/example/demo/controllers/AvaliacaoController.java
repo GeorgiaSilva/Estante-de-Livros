@@ -47,7 +47,7 @@ public class AvaliacaoController {
     @GetMapping("/livro/{idLivro}")
     @Secured(value = {"ADMIN", "USER"})
     public List<Avaliacao> getAvaliacaoPorLivro(@PathVariable Integer idLivro){
-        List<Avaliacao> avaliacoes = avaliacaoService.getAvaliacaoPorLivro(idLivro;
-        return avaliacoes);
+        List<Avaliacao> avaliacoes = avaliacaoService.getAvaliacaoPorLivro(idLivro);
+        return avaliacoes;
     }
 }

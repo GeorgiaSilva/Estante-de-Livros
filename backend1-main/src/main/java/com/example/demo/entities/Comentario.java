@@ -7,8 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import lombok.Getter;
 import lombok.Setter;
+
+@NamedQuery(name = "Comentario.getComentariosPorLeitura", query = "SELECT t FROM Comentario t WHERE t.id_leitura.id=:idLeitura")
 
 @Entity
 @Getter @Setter
@@ -19,7 +22,7 @@ public class Comentario {
     
     @ManyToOne
     @JoinColumn(nullable = false, updatable = false)
-    private Livro id_livro;
+    private Leitura id_leitura;
     
     @ManyToOne
     @JoinColumn(nullable = false, updatable = false)

@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @NamedQuery(name = "Livro.getLivrosPorCategoria", query = "SELECT t FROM Livro t WHERE t.categoria.id=:idCategoria")
+@NamedQuery(name = "Livro.getLivrosPorAutor", query = "SELECT t FROM Livro t WHERE t.autor.id=:idAutor")
 
 
 @Entity
