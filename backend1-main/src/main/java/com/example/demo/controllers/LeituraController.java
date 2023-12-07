@@ -53,11 +53,11 @@ public class LeituraController {
     }
 
     // pegar lista de livro por categoria
-    @GetMapping("/categoria/{idCategoria}")
+    @GetMapping("/usuario/{idUsuario}")
     @Secured(value = { "ADMIN", "USER" })
-    public List<Leitura> getLieituraPorUsuario(@PathVariable Integer idCategoria) {
-        List<Leitura> leitura = leituraService.getLeiturasPorUsuario(idCategoria);
-        return leitura;
+    public List<Leitura> getLieiturasPorUsuario(@PathVariable Integer idUsuario) {
+        List<Leitura> leituras = leituraService.getLeiturasPorUsuario(idUsuario);
+        return leituras;
     }
     
     

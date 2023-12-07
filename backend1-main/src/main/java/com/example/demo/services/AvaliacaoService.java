@@ -1,11 +1,13 @@
 package com.example.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Avaliacao;
+
 import com.example.demo.repositories.AvaliacaoRepository;
 @Service
 public class AvaliacaoService {
@@ -29,6 +31,8 @@ public class AvaliacaoService {
     public void remover(Integer idAvaliacao) {
         avaliacaoRepository.deleteById(idAvaliacao);
     }
-   
+    public List<Avaliacao> getAvaliacaoPorLivro(Integer idLivro){
+        return avaliacaoRepository.getAvaliacaoPorLivro(idLivro);
+    }
    
 }
