@@ -1,8 +1,9 @@
 package com.example.demo.entities;
 
 
-import java.sql.Date;
+
 import java.time.LocalDate;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,12 +13,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
-@NamedQuery(name = "Leitura.getLeiturasPorUsuario", query = "SELECT t FROM Leitura t WHERE t.id_usuario.id=:idUsuario")
+@NamedQuery(name = "Leitura.getLeiturasPorUsuario", query = "SELECT t FROM Leitura t WHERE t.usuario.id=:idUsuario")
 
 @Entity
 @Getter @Setter
@@ -29,19 +31,28 @@ public class Leitura {
 
     @ManyToOne
     @JoinColumn(nullable = false, updatable = false)
-    private Livro id_livro;
+    private Livro livro;
     
     @ManyToOne
     @JoinColumn(nullable = false, updatable = false)
-    private Usuario id_usuario;
+    private Usuario usuario;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate data_inicio;
-
-    @Temporal(TemporalType.DATE)
-    private Date data_final;
+    private LocalDate DataInicio;
     
+    @Temporal(TemporalType.DATE)
+    private LocalDate DataFim;
+
     @PrePersist void prePersist(){
-        data_inicio= LocalDate.now();
+        DataInicio = LocalDate.now();
     }
+    @PreUpdate
+    void PreUpdate(){
+        DataFim = LocalDate.now();
+        if (DataFim != null && DataInicio == null) {
+            // Se a leitura está sendo concluída, mas a data de início ainda não está definida, mantenha a data de início
+            DataInicio = LocalDate.now();
+        }
+    }
+
 }

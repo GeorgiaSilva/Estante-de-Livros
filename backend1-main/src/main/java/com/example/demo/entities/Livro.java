@@ -35,7 +35,7 @@ public class Livro {
     private Autor autor;
 
    
-    @Column(nullable = false)
+    @Column(length = 1000, nullable = false)
     private String sinopse;
 
     @Column(nullable = false)

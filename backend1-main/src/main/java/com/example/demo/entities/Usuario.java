@@ -23,9 +23,6 @@ public class Usuario {
   private Integer id;
 
   @Column(nullable = false)
-  private String nome;
-
-  @Column(nullable = false)
   private String login;
 
   @Column(nullable = false, updatable = false)

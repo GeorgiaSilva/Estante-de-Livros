@@ -42,6 +42,7 @@ public class SecurityConfig {
               authorizeConfig.requestMatchers(HttpMethod.GET, "/status").permitAll();
               authorizeConfig.anyRequest().authenticated();
             })
+            
         .addFilter(new JWTAuthenticationFilter(configuration.getAuthenticationManager()))
         .addFilter(new JWTAuthorizationFilter(configuration.getAuthenticationManager(), usuarioService))
         .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

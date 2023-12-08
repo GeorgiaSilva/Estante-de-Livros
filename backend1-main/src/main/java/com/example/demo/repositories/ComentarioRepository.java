@@ -9,4 +9,5 @@ import com.example.demo.entities.Comentario;
 
 public interface ComentarioRepository extends JpaRepository<Comentario,Integer>{
     List<Comentario> getComentariosPorLeitura(Integer idLeitura);
+    boolean existsByConteudo(String conteudo);
 }

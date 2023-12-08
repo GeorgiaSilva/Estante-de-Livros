@@ -19,7 +19,11 @@ public class CategoriaService {
     }
 
     public Categoria salvar(Categoria categoria) {
+        if (categoriaRepository.existsByNome(categoria.getNome())) {
+            throw new RuntimeException("Já existe um genero com o nome " + categoria.getNome()) ;
+        } else {
         return categoriaRepository.save(categoria);
+        }
     }
 
     public Categoria atualizar(Categoria categoria) {

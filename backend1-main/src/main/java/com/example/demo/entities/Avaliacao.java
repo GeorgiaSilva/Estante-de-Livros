@@ -27,7 +27,7 @@ public class Avaliacao {
     private Livro id_livro;
 
     @Column(nullable = false)
-    private String comentario_avaliacao;
+    private String texto;
     
     
 }

@@ -19,7 +19,11 @@ public class AutorService {
     }
 
     public Autor salvar(Autor autor) {
+        if (autorRepository.existsByNome(autor.getNome())) {
+            throw new RuntimeException("Já existe um autor com o nome " + autor.getNome()) ;
+        } else {
         return autorRepository.save(autor);
+        }
     }
 
     public Autor atualizar(Autor autor) {

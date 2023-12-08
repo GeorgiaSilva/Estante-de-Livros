@@ -30,22 +30,18 @@ public class AvaliacaoController {
         return avaliacao;
     }
     @PostMapping
-    @Secured(value = { "ADMIN" })
     public void cadastrarAvaliacao(@RequestBody Avaliacao avaliacao){
         avaliacaoService.salvar(avaliacao);
     }
     @PutMapping
-    @Secured(value = { "ADMIN" })
     public void atualizar(@RequestBody Avaliacao avaliacao){
         avaliacaoService.atualizar(avaliacao);
     }
     @DeleteMapping("/{idAvaliacao}")
-    @Secured(value = { "ADMIN" })
     public void remover(@PathVariable Integer idAvaliacao){
         avaliacaoService.remover(idAvaliacao);
     }
     @GetMapping("/livro/{idLivro}")
-    @Secured(value = {"ADMIN", "USER"})
     public List<Avaliacao> getAvaliacaoPorLivro(@PathVariable Integer idLivro){
         List<Avaliacao> avaliacoes = avaliacaoService.getAvaliacaoPorLivro(idLivro);
         return avaliacoes;

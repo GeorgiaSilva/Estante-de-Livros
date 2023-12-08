@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,7 +49,7 @@ public class LeituraController {
     //deletar livro do db
     @DeleteMapping("/{idLeitura}")
     @Secured(value = { "ADMIN" })
-    public void remover(@PathVariable Integer idLeitura){
+    public void remover(@PathVariable Integer idLeitura ){
         leituraService.remover(idLeitura);
     }
 
@@ -59,6 +60,11 @@ public class LeituraController {
         List<Leitura> leituras = leituraService.getLeiturasPorUsuario(idUsuario);
         return leituras;
     }
-    
+    @PutMapping("/concluir/{idLeitura}")
+    @Secured(value = { "ADMIN", "USER" })
+    public void concluirLeitura(@PathVariable Integer idLeitura){
+        leituraService.concluirLeitura(idLeitura);
+   
+    }
     
 }

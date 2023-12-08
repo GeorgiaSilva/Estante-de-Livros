@@ -21,7 +21,11 @@ public class AvaliacaoService {
     }
 
     public Avaliacao salvar(Avaliacao avaliacao) {
+        if (avaliacaoRepository.existsByTexto(avaliacao.getTexto())) {
+            throw new RuntimeException("Já existe um autor com o nome " + avaliacao.getTexto()) ;
+        } else {
         return avaliacaoRepository.save(avaliacao);
+        }
     }
 
     public Avaliacao atualizar(Avaliacao avaliacao) {

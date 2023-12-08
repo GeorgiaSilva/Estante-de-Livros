@@ -21,7 +21,12 @@ public class LivroService {
     }
 
     public Livro salvar(Livro livro) {
+
+        if (livroRepository.existsByTitulo(livro.getTitulo())) {
+            throw new RuntimeException("Já existe um livro com o nome " + livro.getTitulo()) ;
+        } else {
         return livroRepository.save(livro);
+        }
     }
 
     public Livro atualizar(Livro livro) {

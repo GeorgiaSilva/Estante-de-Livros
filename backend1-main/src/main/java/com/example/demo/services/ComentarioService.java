@@ -21,11 +21,19 @@ public class ComentarioService {
     }
 
     public Comentario salvar(Comentario comentario) {
+        if (comentarioRepository.existsByConteudo(comentario.getConteudo())) {
+            throw new RuntimeException("Já existe um comentario com este conteudo ") ;
+        } else {
         return comentarioRepository.save(comentario);
+        }
     }
 
     public Comentario atualizar(Comentario comentario) {
+        if (comentarioRepository.existsByConteudo(comentario.getConteudo())) {
+            throw new RuntimeException("Já existe um comentario com este conteudo ") ;
+        } else {
         return comentarioRepository.save(comentario);
+        }
     }
 
     public void remover(Integer idComentario) {

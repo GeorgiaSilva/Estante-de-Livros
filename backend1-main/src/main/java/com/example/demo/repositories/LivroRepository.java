@@ -9,4 +9,5 @@ import com.example.demo.entities.Livro;
 public interface LivroRepository extends JpaRepository<Livro,Integer>{
     List<Livro> getLivrosPorCategoria(Integer idCategoria);
     List<Livro> getLivrosPorAutor(Integer idAutor);
+    boolean existsByTitulo(String titulo);
 }
